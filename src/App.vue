@@ -1,22 +1,40 @@
-<template>
-  <img alt="Vue logo" src="./assets/logo.png" />
-  <HelloWorld msg="Hello Vue 3 + Vite" />
-</template>
+<script>
+  import { defineComponent } from 'vue'
+  import { NConfigProvider, NInput, NDatePicker, NSpace } from 'naive-ui'
+  // theme
+  import { createTheme, inputDark, datePickerDark } from 'naive-ui'
+  // locale & dateLocale
+  import { zhCN, dateZhCN } from 'naive-ui'
 
-<script setup>
-import HelloWorld from './components/HelloWorld.vue'
-
-// This starter template is using Vue 3 experimental <script setup> SFCs
-// Check out https://github.com/vuejs/rfcs/blob/script-setup-2/active-rfcs/0000-script-setup.md
+  export default defineComponent({
+    components: {
+      NConfigProvider,
+      NInput,
+      NDatePicker,
+      NSpace
+    },
+    setup() {
+      return {
+        darkTheme: createTheme([inputDark, datePickerDark]),
+        zhCN,
+        dateZhCN
+      }
+    }
+  })
 </script>
 
+<template>
+  <n-config-provider :theme="darkTheme" :locale="zhCN" :date-locale="dateZhCN">
+    <n-space vertical>
+      <n-space justify="center">
+          <img alt="Vue logo" src="./assets/logo.gif" />
+      </n-space>
+    </n-space>
+  </n-config-provider>
+</template>
+
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+  body {
+    background: black;
+  }
 </style>
