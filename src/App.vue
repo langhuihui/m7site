@@ -55,7 +55,7 @@
     /* border-radius: 10px; */
     box-shadow: 0px 0px 20px 3px black inset;
     width: 146px;
-    height: 112px;
+    height: 110px;
     top: 125px;
     left: 112px;
     z-index: 9;
