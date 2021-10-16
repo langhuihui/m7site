@@ -28,9 +28,9 @@
     <n-space vertical>
       <n-space justify="center">
         <div id="logo" >
-          <div/>
+          <div class="bg"/>
+          <div class="content"/>
         </div>
-          
       </n-space>
     </n-space>
   </n-config-provider>
@@ -46,18 +46,25 @@
     margin-top: 100px;
     width: 400px;
     height: 300px;
-    background-image: url(./assets/tv.jpeg);
     position: relative;
   }
-  #logo>div {
+  #logo>.content {
     background-image: url(./assets/logo.gif);
     background-size: contain;
     position: absolute;
-    border-radius: 10px;
-    box-shadow: 0px 0px 20px 7px black inset;
-    width: 140px;
-    height: 105px;
-    top: 130px;
-    left: 118px;
+    /* border-radius: 10px; */
+    box-shadow: 0px 0px 20px 3px black inset;
+    width: 146px;
+    height: 112px;
+    top: 125px;
+    left: 112px;
+    z-index: 9;
+  }
+  #logo>.bg {
+    position: absolute;
+    width: 400px;
+    height: 300px;
+    background-image: url(./assets/tv.png);
+    z-index: 10;
   }
 </style>
