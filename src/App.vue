@@ -20,6 +20,7 @@ export default defineComponent({
   },
   setup() {
     return {
+      version: 'v3.0.4',
       darkTheme: createTheme([inputDark, datePickerDark]),
       zhCN,
       dateZhCN
@@ -36,29 +37,32 @@ export default defineComponent({
         <div class="content" />
       </div>
       <div class="download-btn">
-        <a target="_blank" to="/linux.tgz">Linux</a>
-        <a target="_blank" to="/windows.tgz">Windows</a>
-        <a target="_blank" to="/mac.tgz">Mac</a>
+        <a target="_blank" :href="`https://github.com/langhuihui/monibuca/releases/download/${version}/linux.tgz`">Linux</a>
+        <a
+          target="_blank"
+          :href="`https://github.com/langhuihui/monibuca/releases/download/${version}/windows.tgz`"
+        >Windows</a>
+        <a target="_blank" :href="`https://github.com/langhuihui/monibuca/releases/download/${version}/mac.tgz`">Mac</a>
       </div>
       <div class="tips">点击上面的按钮下载可执行文件，可以在对应的操作系统上直接运行，无需安装环境</div>
     </n-space>
   </n-config-provider>
   <div class="menu">
-    <div class="title">&gt;MONIBUCA_ V3.2.2</div>
+    <div class="title">&gt;MONIBUCA_ {{version}}</div>
     <div class="menu-item">
-      <a>文档</a>
+      <a target="_blank" href="http://docs.m7s.live">文档</a>
     </div>
     <div class="menu-item">
-      <a>插件</a>
+      <a target="_blank">插件</a>
     </div>
     <div class="menu-item">
-      <a>支持</a>
+      <a target="_blank">支持</a>
     </div>
     <div class="menu-item">
-      <a>Github</a>
+      <a href="https://github.com/langhuihui/monibuca" target="_blank">Github</a>
     </div>
     <div class="menu-item">
-      <a>Jessibuca</a>
+      <a href="https://j.m7s.live" target="_blank">Jessibuca</a>
     </div>
   </div>
   <div class="qcode-container">
@@ -141,9 +145,13 @@ a {
   color: grey;
   & a {
     color: grey;
+    transition: 0.2s ease-out;
+    text-decoration: none;
   }
   & a:hover {
     color: white;
+    font-size: 50px;
+    text-shadow: 0 0 20px #0ff;
   }
   & .title {
     font-family: keros;
