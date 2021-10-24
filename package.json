@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "animate.css": "^4.1.1",
+    "fastrx": "^3.0.7",
     "vue": "^3.0.5"
   },
   "devDependencies": {

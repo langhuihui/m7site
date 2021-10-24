@@ -276,6 +276,11 @@ copy-anything@^2.0.1:
   dependencies:
     is-what "^3.12.0"
 
+core-js@^3.7.0:
+  version "3.18.3"
+  resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.18.3.tgz#86a0bba2d8ec3df860fefcc07a8d119779f01509"
+  integrity sha512-tReEhtMReZaPFVw7dajMx0vlsz3oOb8ajgPoHVYGxr8ErnZ6PcYEvvmjGmXlfpnxpkYSdOQttjB+MvVbCGfvLw==
+
 css-render@^0.15.3, css-render@^0.15.6, css-render@~0.15.6:
   version "0.15.6"
   resolved "https://registry.yarnpkg.com/css-render/-/css-render-0.15.6.tgz#93b778ffc38120f8cd4e135941f0d76ee4c1b783"
@@ -348,6 +353,13 @@ evtd@^0.2.2:
   version "0.2.2"
   resolved "https://registry.yarnpkg.com/evtd/-/evtd-0.2.2.tgz#bebbe27e15aedc1d5c18bc2620dfc90f260787c3"
   integrity sha512-YRUY9BHnnOmeeaOOLlIfUEp3itg4oFEd+uWPGMs0m4WUJaGcEgxFx8PLRRQaaDKvN2B+19lYzhATILGfXuprnA==
+
+fastrx@^3.0.7:
+  version "3.0.7"
+  resolved "https://registry.yarnpkg.com/fastrx/-/fastrx-3.0.7.tgz#727a42c664f6116487a4039f4f4f07fdf87d1e8f"
+  integrity sha512-PSyuxyj3otjBoG5K79hk0WyM278pp2d+QxvFidxr/dEcucAUbKLSdYhvumNFvL9rz/ZIFsw/EhqvSu09i79YbQ==
+  dependencies:
+    core-js "^3.7.0"
 
 fsevents@~2.3.2:
   version "2.3.2"

@@ -1,17 +1,20 @@
-<script>
-import { defineComponent } from 'vue';
-import { NConfigProvider, NInput, NDatePicker, NSpace, NButton, NLayout, NLayoutHeader, NLayoutContent } from 'naive-ui';
-// theme
-import { createTheme, inputDark, datePickerDark } from 'naive-ui';
+<script lang="ts">
+import { defineComponent, reactive, ref } from 'vue';
+import { NConfigProvider, NCard, NModal, NSpace, NButton, NLayout, NLayoutHeader, NLayoutContent, NRadio, NRadioGroup } from 'naive-ui';
+import { createTheme, modalDark, cardDark, radioDark } from 'naive-ui';
 // locale & dateLocale
 import { zhCN, dateZhCN } from 'naive-ui';
 import MarqueeVue from './components/Marquee.vue';
+import Marquee from './components/Marquee.vue';
+import { subject, pipe, subscribe, switchMap, timer, tap } from 'fastrx';
 export default defineComponent({
   components: {
     MarqueeVue,
+    NRadioGroup,
+    NRadio,
     NConfigProvider,
-    NInput,
-    NDatePicker,
+    NCard,
+    NModal,
     NSpace,
     NButton,
     NLayoutContent,
@@ -19,14 +22,39 @@ export default defineComponent({
     NLayoutHeader,
   },
   setup() {
+    const changePayOb = subject<'alipay' | 'wechat'>();
+    const checkedValue = ref('alipay');
+    const payClass = reactive({
+      alipay: '',
+      wechat: ''
+    });
+    let lastValue = 'alipay'
+    pipe(changePayOb, switchMap(value => {
+      payClass[lastValue] = 'animate__animated animate__flipOutY';
+      lastValue = value;
+      return timer(500);
+    }), subscribe(() => {
+      checkedValue.value = lastValue
+      payClass[lastValue] = 'animate__animated animate__flipInY';
+    }));
     return {
       version: 'v3.0.4',
-      darkTheme: createTheme([inputDark, datePickerDark]),
+      payClass,
+      darkTheme: createTheme([modalDark, cardDark, radioDark]),
       zhCN,
-      dateZhCN
+      dateZhCN,
+      showModal: ref(false),
+      checkedValue,
+      onChangePay(value) {
+        changePayOb.next(value);
+      }
     };
   }
 });
+
+function of(value: string): import("fastrx").Observable<unknown> {
+  throw new Error('Function not implemented.');
+}
 </script>
 
 <template>
@@ -37,26 +65,63 @@ export default defineComponent({
         <div class="content" />
       </div>
       <div class="download-btn">
-        <a target="_blank" :href="`https://github.com/langhuihui/monibuca/releases/download/${version}/linux.tgz`">Linux</a>
+        <a
+          target="_blank"
+          :href="`https://github.com/langhuihui/monibuca/releases/download/${version}/linux.tgz`"
+        >Linux</a>
         <a
           target="_blank"
           :href="`https://github.com/langhuihui/monibuca/releases/download/${version}/windows.tgz`"
         >Windows</a>
-        <a target="_blank" :href="`https://github.com/langhuihui/monibuca/releases/download/${version}/mac.tgz`">Mac</a>
+        <a
+          target="_blank"
+          :href="`https://github.com/langhuihui/monibuca/releases/download/${version}/mac.tgz`"
+        >Mac</a>
       </div>
       <div class="tips">点击上面的按钮下载可执行文件，可以在对应的操作系统上直接运行，无需安装环境</div>
     </n-space>
+    <n-modal v-model:show="showModal">
+      <n-card
+        style="width: 600px; backdrop-filter: blur(5px);--color-modal:rgb(133 133 133 / 25%)"
+        title="支持开源项目更好的发展"
+        :bordered="false"
+        size="huge"
+      >
+        <template #header-extra>
+          <n-radio-group
+            v-model:value="checkedValue"
+            name="radiogroup"
+            :on-update:value="onChangePay"
+          >
+            <n-radio value="alipay">支付宝</n-radio>
+            <n-radio value="wechat">微信</n-radio>
+          </n-radio-group>
+        </template>
+        <n-space vertical align="center">
+          <img
+            src="./assets/alipay.jpg"
+            height="456"
+            v-if="checkedValue === 'alipay'"
+            :class="payClass.alipay"
+          />
+          <img src="./assets/wechat.jpg" height="456" v-else :class="payClass.wechat" />
+        </n-space>
+        <template #footer>
+          <marquee class="thank">感谢以下支持者：Sense、hshev99、兵、Leon、Jack、天空、李亚宁</marquee>
+        </template>
+      </n-card>
+    </n-modal>
   </n-config-provider>
   <div class="menu">
-    <div class="title">&gt;MONIBUCA_ {{version}}</div>
+    <div class="title">&gt;MONIBUCA_ {{ version }}</div>
     <div class="menu-item">
       <a target="_blank" href="http://docs.m7s.live">文档</a>
     </div>
     <div class="menu-item">
       <a target="_blank">插件</a>
     </div>
-    <div class="menu-item">
-      <a target="_blank">支持</a>
+    <div class="menu-item" @click="showModal = true">
+      <a>支持</a>
     </div>
     <div class="menu-item">
       <a href="https://github.com/langhuihui/monibuca" target="_blank">Github</a>
@@ -93,6 +158,16 @@ export default defineComponent({
       0 0 20px #ff1177, 0 0 35px #ff1177;
   }
 }
+@keyframes debounce2 {
+  from {
+    text-shadow: 0 0 5px #ffd07a, 0 0 10px #fffcd0, 0 0 15px #ffe868,
+      0 0 20px #ffac11, 0 0 35px #ffac11;
+  }
+  to {
+    text-shadow: 0 0 5px #ffd07a, 0 0 10px #e0c213, 0 0 15px #ffe868,
+      0 0 20px #ffac11, 0 0 35px #ffac11;
+  }
+}
 .tips {
   animation: debounce 0.1s infinite;
   width: 600px;
@@ -100,6 +175,14 @@ export default defineComponent({
   color: white;
   text-shadow: 0 0 5px #ff7a7a, 0 0 10px #ffd0d0, 0 0 15px #ff6868,
     0 0 20px #ff1177, 0 0 35px #ff1177;
+}
+.thank {
+  font-size: 30px;
+  animation: debounce2 0.1s infinite;
+  padding: 10px;
+  color: white;
+  text-shadow: 0 0 5px #ffd07a, 0 0 10px #fffcd0, 0 0 15px #ffe868,
+    0 0 20px #ffac11, 0 0 35px #ffac11;
 }
 #app {
   perspective: calc(100vw / 2);
