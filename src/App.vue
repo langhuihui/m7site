@@ -30,15 +30,15 @@ export default defineComponent({
     });
     let lastValue = 'alipay'
     pipe(changePayOb, switchMap(value => {
-      payClass[lastValue] = 'animate__animated animate__flipOutY';
+      payClass[lastValue] = 'animate__flipOutY';
       lastValue = value;
-      return timer(500);
+      return timer(250);
     }), subscribe(() => {
       checkedValue.value = lastValue
-      payClass[lastValue] = 'animate__animated animate__flipInY';
+      payClass[lastValue] = 'animate__flipInY';
     }));
     return {
-      version: 'v3.0.4',
+      version: 'v3.0.5',
       payClass,
       darkTheme: createTheme([modalDark, cardDark, radioDark]),
       zhCN,
@@ -148,26 +148,7 @@ function of(value: string): import("fastrx").Observable<unknown> {
   src: url("./assets/Kerox-NonCommercial.otf");
 }
 @qcode: "./assets/qcode.jpg";
-@keyframes debounce {
-  from {
-    text-shadow: 0 0 5px #ff7a7a, 0 0 10px #ffd0d0, 0 0 15px #ff6868,
-      0 0 20px #ff1177, 0 0 35px #ff1177;
-  }
-  to {
-    text-shadow: 0 0 5px #ff7a7a, 0 0 10px #ff4d4d, 0 0 15px #ff6868,
-      0 0 20px #ff1177, 0 0 35px #ff1177;
-  }
-}
-@keyframes debounce2 {
-  from {
-    text-shadow: 0 0 5px #ffd07a, 0 0 10px #fffcd0, 0 0 15px #ffe868,
-      0 0 20px #ffac11, 0 0 35px #ffac11;
-  }
-  to {
-    text-shadow: 0 0 5px #ffd07a, 0 0 10px #e0c213, 0 0 15px #ffe868,
-      0 0 20px #ffac11, 0 0 35px #ffac11;
-  }
-}
+@import url(./assets/an.less);
 .tips {
   animation: debounce 0.1s infinite;
   width: 600px;
@@ -234,6 +215,7 @@ a {
   & a:hover {
     color: white;
     font-size: 50px;
+    
     text-shadow: 0 0 20px #0ff;
   }
   & .title {
