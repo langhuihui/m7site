@@ -18,6 +18,61 @@
       0 0 20px #ffac11, 0 0 35px #ffac11;
   }
 }
+@keyframes debounce3
+{
+  from {
+    mask: repeating-linear-gradient(
+    0deg,
+    rgb(255 255 255 / 50%),
+    rgb(0 255 255 / 100%) 5%
+  );
+  -webkit-mask:repeating-linear-gradient(
+  0deg,
+  rgb(255 255 255 / 50%),
+  rgb(0 255 255 / 100%) 5%
+); 
+  }
+  to {
+    mask: repeating-linear-gradient(
+    0deg,
+    rgb(0 255 255 / 100%) ,
+    rgb(255 255 255 / 50%) 5%
+  );
+  -webkit-mask:repeating-linear-gradient(
+  0deg,
+  rgb(0 255 255 / 100%) ,
+  rgb(255 255 255 / 50%) 5%
+); 
+  }
+}
+@keyframes debounce4
+{
+  from {
+    mask: repeating-linear-gradient(
+        0deg,
+        rgb(0 255 255 / 10%),
+        #0ff 1%
+      );
+      -webkit-mask:repeating-linear-gradient(
+      0deg,
+      rgb(0 255 255 / 10%),
+      #0ff 1%
+    ); 
+  }
+  to {
+    mask: repeating-linear-gradient(
+    0deg,
+    #0ff ,
+    rgb(0 255 255 / 10%) 1%
+  );
+  -webkit-mask:repeating-linear-gradient(
+    0deg,
+    #0ff ,
+    rgb(0 255 255 / 10%)  1%
+  ); 
+  }
+}
+
 @keyframes flipInY {
   from {
     -webkit-transform: perspective(400px) rotate3d(0, 1, 0, 90deg);

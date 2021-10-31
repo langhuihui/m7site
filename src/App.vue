@@ -206,22 +206,34 @@ a {
   top: 20px;
   left: 10px;
   font-size: 40px;
-  color: grey;
+  color: #0ff;
   & a {
-    color: grey;
+    color: #0ff;
+    font-size: 50px;
     transition: 0.2s ease-out;
     text-decoration: none;
+    animation: debounce4 0.1s infinite;
   }
   & a:hover {
-    color: white;
-    font-size: 50px;
-    
-    text-shadow: 0 0 20px #0ff;
+    color: #0ff;
+    font-size: 55px;
+    animation: debounce3 0.1s infinite;
   }
   & .title {
     font-family: keros;
-    color: white;
-    font-size: 60px;
+    color: #0ff;
+    font-size: 61px;
+    mask: repeating-linear-gradient(
+    0deg,
+    #0ff ,
+    white 1%
+  );
+  -webkit-mask:repeating-linear-gradient(
+    0deg,
+    #0ff ,
+    white  1%
+  ); 
+    animation: debounce4 0.1s infinite;
   }
 }
 #logo {
