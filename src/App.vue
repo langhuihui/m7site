@@ -300,6 +300,7 @@ a {
   width: 300px;
   height: 200px;
   & .line {
+    transition: 0.2s ease-out;
     background-image: radial-gradient(
       farthest-side at 90% 10%,
       rgba(0, 0, 0, 0) 20%,
