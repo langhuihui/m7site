@@ -41,7 +41,7 @@ export default defineComponent({
       payClass[lastValue] = 'animate__flipInY';
     }));
     return {
-      version: 'v3.0.11',
+      version: 'v3.0.14',
       payClass,
       darkTheme: createTheme([modalDark, cardDark, radioDark, tabsDark]),
       zhCN,
@@ -170,6 +170,10 @@ export default defineComponent({
   font-family: "keros";
   src: url("./assets/Kerox-NonCommercial.otf");
 }
+@font-face {
+  font-family: "FZXIANGSU12";
+  src: url("./assets/FZXIANGSU12.TTF");
+}
 @qcode: "./assets/qcode.jpg";
 @import url(./assets/an.less);
 .tips {
@@ -204,6 +208,7 @@ body {
   margin: 0;
   border: 0;
   height: 100%;
+  font-family: FZXIANGSU12;
 }
 a {
   user-select: none;
