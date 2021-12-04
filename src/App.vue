@@ -172,7 +172,7 @@ export default defineComponent({
 }
 @font-face {
   font-family: "FZXIANGSU12";
-  src: url("./assets/FZXIANGSU12.TTF");
+  src: url("./assets/FZXIANGSU12.ttf");
 }
 @qcode: "./assets/qcode.jpg";
 @import url(./assets/an.less);
