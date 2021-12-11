@@ -41,7 +41,7 @@ export default defineComponent({
       payClass[lastValue] = 'animate__flipInY';
     }));
     return {
-      version: 'v3.0.14',
+      version: 'v3.0.15',
       payClass,
       darkTheme: createTheme([modalDark, cardDark, radioDark, tabsDark]),
       zhCN,
