@@ -111,7 +111,7 @@ function onChangePay(value) {
     </n-modal>
   </n-config-provider>
   <div class="menu">
-    <div class="title">{{ `>MONIBUCA_ ${version}`; }}</div>
+    <div class="title">{{ `>MONIBUCA_ ${version}` }}</div>
     <div class="menu-item">
       <a target="_blank" href="http://docs.m7s.live">文档</a>
     </div>
