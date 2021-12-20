@@ -1,61 +1,36 @@
-<script lang="ts">
-import { defineComponent, reactive, ref } from 'vue';
-import { NConfigProvider, NCard, NModal, NSpace, NButton, NLayout, NLayoutHeader, NLayoutContent, NRadio, NRadioGroup, NTabPane, NTabs } from 'naive-ui';
+<script setup lang="ts">
+import { reactive, ref } from 'vue';
+import { darkTheme, NConfigProvider, NCard, NModal, NSpace, NRadio, NRadioGroup, NTabPane, NTabs } from 'naive-ui';
 import { createTheme, modalDark, cardDark, radioDark, tabsDark } from 'naive-ui';
 // locale & dateLocale
 import { zhCN, dateZhCN } from 'naive-ui';
-import MarqueeVue from './components/Marquee.vue';
 import LiveStage from './components/LiveStage.vue';
 import WatchStage from './components/WatchStage.vue';
 import RouteStage from './components/RouteStage.vue';
-import MoreStage from './components/MoreStage.vue'
+import MoreStage from './components/MoreStage.vue';
 import { subject, pipe, subscribe, switchMap, timer } from 'fastrx';
-export default defineComponent({
-  components: {
-    MarqueeVue,
-    NRadioGroup,
-    NRadio,
-    NConfigProvider,
-    NCard,
-    NModal,
-    NSpace,
-    NButton,
-    NLayoutContent,
-    NLayout, NTabPane, NTabs, WatchStage,
-    NLayoutHeader, LiveStage, RouteStage,MoreStage
-  },
-  setup() {
-    const changePayOb = subject<'alipay' | 'wechat'>();
-    const checkedValue = ref('alipay');
-    const payClass = reactive({
-      alipay: '',
-      wechat: ''
-    });
-    let lastValue = 'alipay';
-    pipe(changePayOb, switchMap(value => {
-      payClass[lastValue] = 'animate__flipOutY';
-      lastValue = value;
-      return timer(250);
-    }), subscribe(() => {
-      checkedValue.value = lastValue;
-      payClass[lastValue] = 'animate__flipInY';
-    }));
-    return {
-      version: 'v3.0.15',
-      payClass,
-      darkTheme: createTheme([modalDark, cardDark, radioDark, tabsDark]),
-      zhCN,
-      dateZhCN,
-      showModal: ref(false),
-      showStage: ref(false),
-      checkedValue,
-      onChangePay(value) {
-        changePayOb.next(value);
-      }
-    };
-  }
-});
 
+const changePayOb = subject<'alipay' | 'wechat'>();
+const checkedValue = ref('alipay');
+const payClass = reactive({
+  alipay: '',
+  wechat: ''
+});
+let lastValue = 'alipay';
+pipe(changePayOb, switchMap(value => {
+  payClass[lastValue] = 'animate__flipOutY';
+  lastValue = value;
+  return timer(250);
+}), subscribe(() => {
+  checkedValue.value = lastValue;
+  payClass[lastValue] = 'animate__flipInY';
+}));
+const version = 'v3.0.17';
+const showModal = ref(false);
+const showStage = ref(false);
+function onChangePay(value) {
+  changePayOb.next(value);
+}
 </script>
 
 <template>
@@ -98,7 +73,7 @@ export default defineComponent({
             <RouteStage />
           </n-tab-pane>
           <n-tab-pane name="more stage" tab="自定义">
-            <MoreStage/>
+            <MoreStage />
           </n-tab-pane>
         </n-tabs>
       </n-card>
@@ -136,7 +111,7 @@ export default defineComponent({
     </n-modal>
   </n-config-provider>
   <div class="menu">
-    <div class="title">{{ `>MONIBUCA_ ${version}` }}</div>
+    <div class="title">{{ `>MONIBUCA_ ${version}`; }}</div>
     <div class="menu-item">
       <a target="_blank" href="http://docs.m7s.live">文档</a>
     </div>
