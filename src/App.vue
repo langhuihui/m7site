@@ -32,7 +32,8 @@ pipe(changePayOb, switchMap(value => {
   checkedValue.value = lastValue;
   payClass[lastValue] = 'animate__flipInY';
 }));
-const version = 'v3.1.1';
+const version = 'v3.1.2';
+// fetch('https://github.com/langhuihui/monibuca/releases/latest')
 const showModal = ref(false);
 const showStage = ref(false);
 function onChangePay(value) {
@@ -195,7 +196,7 @@ html {
   height: 100%;
 }
 body {
-  background-image: linear-gradient(#030303 20%, #1e1e1e 40%, #030303);
+  background-image: linear-gradient(#030303 190px, #1e1e1e 410px, #030303);
   background-size: contain;
   background-attachment: fixed;
   color: white;

@@ -203,6 +203,13 @@
   resolved "https://registry.yarnpkg.com/@vue/shared/-/shared-3.1.4.tgz#c14c461ec42ea2c1556e86f60b0354341d91adc3"
   integrity sha512-6O45kZAmkLvzGLToBxEz4lR2W6kXohCtebV2UxjH9GXjd8X9AhEn68FN9eNanFtWNzvgw1hqd6HkPRVQalqf7Q==
 
+aegis-web-sdk@^1.24.49:
+  version "1.24.49"
+  resolved "https://registry.yarnpkg.com/aegis-web-sdk/-/aegis-web-sdk-1.24.49.tgz#5b7a0c626d341253d685574e5adbc18fbae3b8d8"
+  integrity sha512-5bLOUNB0uMcgxJB2rl80+9BN/1CnA0O26vkKWSedGYB0gkPuM2rwUoLrru8r2xYbbTlMjqXxcFUEGROVvpOD5A==
+  dependencies:
+    web-vitals "^1.1.2"
+
 animate.css@^4.1.1:
   version "4.1.1"
   resolved "https://registry.yarnpkg.com/animate.css/-/animate.css-4.1.1.tgz#614ec5a81131d7e4dc362a58143f7406abd68075"
@@ -842,6 +849,11 @@ vueuc@^0.4.13:
     seemly "^0.3.1"
     vdirs "^0.1.4"
     vooks "^0.2.4"
+
+web-vitals@^1.1.2:
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/web-vitals/-/web-vitals-1.1.2.tgz#06535308168986096239aa84716e68b4c6ae6d1c"
+  integrity sha512-PFMKIY+bRSXlMxVAQ+m2aw9c/ioUYfDgrYot0YUa+/xa0sakubWhSDyxAKwzymvXVdF4CZI71g06W+mqhzu6ig==
 
 yallist@^3.0.2:
   version "3.1.1"
