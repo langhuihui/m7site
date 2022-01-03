@@ -40,10 +40,10 @@ function onChangePay(value) {
   changePayOb.next(value);
 }
 function download(os) {
-  aegis.reportEvent(os)
+  aegis.reportEvent(os);
 }
 function clickMenu(title) {
-  aegis.reportEvent(title)
+  aegis.reportEvent(title);
 }
 </script>
 
@@ -126,7 +126,7 @@ function clickMenu(title) {
     </n-modal>
   </n-config-provider>
   <div class="menu">
-    <div class="title">{{ `>MONIBUCA_ ${version}` }}</div>
+    <div class="title">{{ `>MONIBUCA_ ${version}`; }}</div>
     <div class="menu-item" @click="clickMenu('m_doc')">
       <a target="_blank" href="http://docs.m7s.live">文档</a>
     </div>
@@ -153,7 +153,9 @@ function clickMenu(title) {
     </div>
     <div class="line"></div>
   </div>
-  <a href="http://beian.miit.gov.cn/">苏ICP备20001212号</a>
+  <div class="beian">
+    <a href="http://beian.miit.gov.cn/">苏ICP备20001212号</a>
+  </div>
   <marquee
     class="bottom-marquee"
     scrollamount="16"
@@ -347,6 +349,27 @@ a {
       width: 100px;
       visibility: hidden;
     }
+  }
+}
+.beian {
+  position: fixed;
+  background: #00ffff15;
+  bottom: 85px;
+  left: 0;
+  right: 0;
+  width: 200px;
+  height: 30px;
+  padding: 10px;
+  font-size: 20px;
+  -webkit-clip-path: polygon(
+    0% 0%,
+    0% 100%,
+    100% 100%,
+    80% 0%,
+  );
+  & a {
+    color: rgba(0, 255, 255, 0.637);
+    text-decoration: none;
   }
 }
 </style>
