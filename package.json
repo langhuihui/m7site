@@ -7,6 +7,7 @@
     "serve": "vite preview"
   },
   "dependencies": {
+    "aegis-web-sdk": "^1.24.49",
     "animate.css": "^4.1.1",
     "fastrx": "^3.0.7",
     "vue": "^3.0.5"

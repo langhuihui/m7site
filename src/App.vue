@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { reactive, ref } from 'vue';
 import { darkTheme, NConfigProvider, NCard, NModal, NSpace, NRadio, NRadioGroup, NTabPane, NTabs } from 'naive-ui';
-import { createTheme, modalDark, cardDark, radioDark, tabsDark } from 'naive-ui';
 // locale & dateLocale
 import { zhCN, dateZhCN } from 'naive-ui';
 import LiveStage from './components/LiveStage.vue';
@@ -9,7 +8,15 @@ import WatchStage from './components/WatchStage.vue';
 import RouteStage from './components/RouteStage.vue';
 import MoreStage from './components/MoreStage.vue';
 import { subject, pipe, subscribe, switchMap, timer } from 'fastrx';
+// 引入后进行初始化
+import Aegis from 'aegis-web-sdk';
 
+const aegis = new Aegis({
+  id: 'xEJ2YFQ9WmpLXVQqXL', // 上报 id
+  reportApiSpeed: true, // 接口测速
+  reportAssetSpeed: true, // 静态资源测速
+  spa: true // spa 应用页面跳转的时候开启 pv 计算
+});
 const changePayOb = subject<'alipay' | 'wechat'>();
 const checkedValue = ref('alipay');
 const payClass = reactive({
@@ -31,6 +38,12 @@ const showStage = ref(false);
 function onChangePay(value) {
   changePayOb.next(value);
 }
+function download(os) {
+  aegis.reportEvent(os)
+}
+function clickMenu(title) {
+  aegis.reportEvent(title)
+}
 </script>
 
 <template>
@@ -41,20 +54,21 @@ function onChangePay(value) {
         <div class="content" />
       </div>
       <div class="download-btn">
+        <a target="_blank" @click="download('linux')" :href="`https://monibuca.com/linux.tgz`">Linux</a>
         <a
           target="_blank"
-          :href="`https://github.com/langhuihui/monibuca/releases/download/${version}/linux.tgz`"
-        >Linux</a>
-        <a
-          target="_blank"
-          :href="`https://github.com/langhuihui/monibuca/releases/download/${version}/windows.tgz`"
+          @click="download('windows')"
+          :href="`https://monibuca.com/windows.tgz`"
         >Windows</a>
-        <a
-          target="_blank"
-          :href="`https://github.com/langhuihui/monibuca/releases/download/${version}/mac.tgz`"
-        >Mac</a>
+        <a target="_blank" @click="download('mac')" :href="`https://monibuca.com/mac.tgz`">Mac</a>
       </div>
-      <div class="tips">点击上面的按钮下载可执行文件，可以在对应的操作系统上直接运行，无需安装环境</div>
+      <div class="tips">
+        点击上面的按钮下载可执行文件，可以在对应的操作系统上直接运行，无需安装环境,
+        <a
+          href="https://github.com/langhuihui/monibuca/releases"
+          target="_blank"
+        >历史版本</a>
+      </div>
     </n-space>
     <n-modal v-model:show="showStage">
       <n-card
@@ -112,20 +126,24 @@ function onChangePay(value) {
   </n-config-provider>
   <div class="menu">
     <div class="title">{{ `>MONIBUCA_ ${version}` }}</div>
-    <div class="menu-item">
+    <div class="menu-item" @click="clickMenu('m_doc')">
       <a target="_blank" href="http://docs.m7s.live">文档</a>
     </div>
-    <div class="menu-item" @click="showStage = true">
+    <div class="menu-item" @click="showStage = true; clickMenu('m_stage')">
       <a>使用场景</a>
     </div>
-    <div class="menu-item" @click="showModal = true">
+    <div class="menu-item" @click="showModal = true; clickMenu('m_support')">
       <a>支持</a>
     </div>
     <div class="menu-item">
-      <a href="https://github.com/langhuihui/monibuca/issues" target="_blank">提bug</a>
+      <a
+        href="https://github.com/langhuihui/monibuca/issues"
+        target="_blank"
+        @click="clickMenu('m_issues')"
+      >提bug</a>
     </div>
     <div class="menu-item">
-      <a href="https://j.m7s.live" target="_blank">H5播放器</a>
+      <a href="https://j.m7s.live" target="_blank" @click="clickMenu('m_j')">H5播放器</a>
     </div>
   </div>
   <div class="qcode-container">
@@ -134,6 +152,7 @@ function onChangePay(value) {
     </div>
     <div class="line"></div>
   </div>
+  <a href="http://beian.miit.gov.cn/">苏ICP备20001212号</a>
   <marquee
     class="bottom-marquee"
     scrollamount="16"
