@@ -25,7 +25,7 @@ pipe(changePayOb, switchMap(value => {
   checkedValue.value = lastValue;
   payClass[lastValue] = 'animate__flipInY';
 }));
-const version = 'v3.1.0';
+const version = 'v3.1.1';
 const showModal = ref(false);
 const showStage = ref(false);
 function onChangePay(value) {
