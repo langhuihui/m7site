@@ -32,7 +32,7 @@ pipe(changePayOb, switchMap(value => {
   checkedValue.value = lastValue;
   payClass[lastValue] = 'animate__flipInY';
 }));
-const version = 'v3.1.2';
+const version = 'v3.1.4';
 // fetch('https://github.com/langhuihui/monibuca/releases/latest')
 const showModal = ref(false);
 const showStage = ref(false);
@@ -126,7 +126,7 @@ function clickMenu(title) {
     </n-modal>
   </n-config-provider>
   <div class="menu">
-    <div class="title">{{ `>MONIBUCA_ ${version}`; }}</div>
+    <div class="title">{{ `>MONIBUCA_ ${version}` }}</div>
     <div class="menu-item" @click="clickMenu('m_doc')">
       <a target="_blank" href="http://docs.m7s.live">文档</a>
     </div>
@@ -144,7 +144,7 @@ function clickMenu(title) {
       >提bug</a>
     </div>
     <div class="menu-item">
-      <a href="https://j.m7s.live" target="_blank" @click="clickMenu('m_j')">H5播放器</a>
+      <a href="https://jessibuca.com" target="_blank" @click="clickMenu('m_j')">H5播放器</a>
     </div>
   </div>
   <div class="qcode-container">
