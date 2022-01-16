@@ -32,7 +32,7 @@ pipe(changePayOb, switchMap(value => {
   checkedValue.value = lastValue;
   payClass[lastValue] = 'animate__flipInY';
 }));
-const version = 'v3.1.4';
+const version = 'v3.1.5';
 // fetch('https://github.com/langhuihui/monibuca/releases/latest')
 const showModal = ref(false);
 const showStage = ref(false);
