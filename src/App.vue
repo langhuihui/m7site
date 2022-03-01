@@ -9,14 +9,14 @@ import RouteStage from './components/RouteStage.vue';
 import MoreStage from './components/MoreStage.vue';
 import { subject, pipe, subscribe, switchMap, timer } from 'fastrx';
 // 引入后进行初始化
-import Aegis from 'aegis-web-sdk';
 
-const aegis = new Aegis({
-  id: 'xEJ2YFQ9WmpLXVQqXL', // 上报 id
-  reportApiSpeed: true, // 接口测速
-  reportAssetSpeed: true, // 静态资源测速
-  spa: true // spa 应用页面跳转的时候开启 pv 计算
-});
+// const aegis = new Aegis({
+//   id: 'xEJ2YFQ9WmpLXVQqXL', // 上报 id
+//   reportApiSpeed: true, // 接口测速
+//   reportAssetSpeed: true, // 静态资源测速
+//   spa: true // spa 应用页面跳转的时候开启 pv 计算
+// });
+
 const changePayOb = subject<'alipay' | 'wechat'>();
 const checkedValue = ref('alipay');
 const payClass = reactive({
@@ -32,7 +32,7 @@ pipe(changePayOb, switchMap(value => {
   checkedValue.value = lastValue;
   payClass[lastValue] = 'animate__flipInY';
 }));
-const version = 'v3.1.5';
+const version = 'v3.2.0';
 // fetch('https://github.com/langhuihui/monibuca/releases/latest')
 const showModal = ref(false);
 const showStage = ref(false);
@@ -40,10 +40,10 @@ function onChangePay(value) {
   changePayOb.next(value);
 }
 function download(os) {
-  aegis.reportEvent(os);
+  _LTracker.push(os); 
 }
 function clickMenu(title) {
-  aegis.reportEvent(title);
+  _LTracker.push(title); 
 }
 </script>
 
@@ -361,12 +361,7 @@ a {
   height: 30px;
   padding: 10px;
   font-size: 20px;
-  -webkit-clip-path: polygon(
-    0% 0%,
-    0% 100%,
-    100% 100%,
-    80% 0%,
-  );
+  -webkit-clip-path: polygon(0% 0%, 0% 100%, 100% 100%, 80% 0%);
   & a {
     color: rgba(0, 255, 255, 0.637);
     text-decoration: none;
